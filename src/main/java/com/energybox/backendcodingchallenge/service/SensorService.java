@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 
 @Service
@@ -58,6 +60,17 @@ public class SensorService {
                 .fetchAs(Sensor.class)
                 .mappedBy(this::toSensorDetails)
                 .all();
+    }
+
+    public Collection<Sensor> fetchExistingSensors() {
+
+        List<Sensor> sensors = new ArrayList<>() ;
+
+        sensors.add(new Sensor(Sensor.TYPE.ELECTRICITY));
+        sensors.add(new Sensor(Sensor.TYPE.HUMIDITY));
+        sensors.add(new Sensor(Sensor.TYPE.TEMPERATURE));
+
+        return sensors;
     }
 
     public Sensor fetchBySensorType(String type) {

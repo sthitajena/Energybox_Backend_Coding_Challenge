@@ -77,6 +77,11 @@ public class SensorController {
         return service.fetchSensorDetailsAll();
     }
 
+    @GetMapping("/get/allsensors")
+    public Collection<Sensor> findAllExisting() {
+        return service.fetchExistingSensors();
+    }
+
     @GetMapping("/get/{sensortype}")
     public Sensor fetchBySensorType(@PathVariable(value = "sensortype") String sensorType) {
         return service.fetchBySensorType(Sensor.findByName(sensorType).toString());

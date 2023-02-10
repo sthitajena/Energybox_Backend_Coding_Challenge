@@ -59,3 +59,49 @@ Bonus:
 
 - As a user I'd like to query all of the existing last_readings of a given sensor.
 
+### Solution Instruction & API usage
+
+1. Checkout the project
+2. Please make sure neo4j service already running as configured by `docker-compose.yml`
+   Note: ( In case of neo4j connection port,username, password change , please change the configuration at `application.yml`)
+3. Build `mvn clean install` & run the springboot application `java -jar target/backend-coding-challenge-0.0.1-SNAPSHOT.war`
+4. User stories solution :
+   - As a user I'd like to create a new sensor
+
+   `POST` request `http://localhost:8082/api/v1/sensors/create` with example payload `{"type":"electricity"}`
+
+   - As a user I'd like to create a new gateway
+
+   `POST` request `http://localhost:8082/api/v1/gateways/create` with example payload `{"name":"Gateway1"}`
+
+   - As a user I'd like to query for all gateways
+
+   `GET` request `http://localhost:8082/api/v1/gateways/get/all`
+
+   - As a user I'd like to query for all the existing sensors.
+
+   `GET` request `http://localhost:8082/api/v1/sensors/get/allsensors`
+
+   - As a user I'd like to query all sensors assigned to an existing gateway
+
+   `GET` request `http://localhost:8082/api/v1/gateways/get/allsensorwithgateway`
+
+   - As a user I'd like to query for sensors of a certain type.
+
+   `GET` request `http://localhost:8082/api/v1/sensors/get/{type}` (type : ELECTRICITY, HUMIDITY, TEMPERATURE)
+   
+    Example : `http://localhost:8082/api/v1/sensors/get/ELECTRICITY`
+
+   - As a user I'd like to assign a sensor to a given gateway.
+
+   `POST` request `http://localhost:8082/api/v1/sensors/createrelation/{ exiting sensor type }/{exisitng gateway name}`
+
+    Example: `http://localhost:8082/api/v1/sensors/createrelation/ELECTRICITY/Gateway1`
+
+   - As a user I'd like to query for a gateway that has electrical sensors assigned to it.
+
+   `GET` request `http://localhost:8082/api/v1/sensors/get/ELECTRICITY`
+
+   - As a user I'd like to query all of the existing last_readings of a given sensor.
+
+   `GET` request `http://localhost:8082/api/v1/sensors/get/all`

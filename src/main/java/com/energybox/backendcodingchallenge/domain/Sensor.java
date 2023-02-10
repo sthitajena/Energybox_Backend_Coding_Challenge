@@ -49,6 +49,10 @@ public class Sensor {
         this.type = type;
     }
 
+    public Sensor(TYPE type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
