@@ -1,0 +1,40 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /api/v1
+
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css
+    min-response-size: 1024
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,metrics,conditions
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  neo4j:
+    authentication:
+      username: neo4j
+      password: 123456
+    uri: bolt://localhost:7687
+  data:
+    neo4j:
+      database: test
+
+cypher:
+  forbid_shortestpath_common_nodes: false
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          neo4j:
+            cypher: trace
+
